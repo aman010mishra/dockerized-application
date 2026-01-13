@@ -18,7 +18,7 @@ services:
       start_period: 10s
 
   backend:
-    image: mk09000/chatapp-backend:latest
+    image: nuclearcoder26/chatapp-backend:latest
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -35,7 +35,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: mk09000/chatapp-frontend:latest
+    image: nuclearcoder26/chatapp-frontend:latest
     build:
       context: ./frontend
       dockerfile: Dockerfile
