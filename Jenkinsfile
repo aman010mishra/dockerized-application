@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         NODE_ENV=development
+        DOCKER_USER = 'nuclearcoder26'
+        DOCKER_PASS = 'dF6!aJ6@@'
     }
 
     stages {
@@ -18,8 +20,8 @@ pipeline {
                     script {
                         // Install dependencies
                         sh 'npm install'
-                        // Optional: Run backend tests
-                        // sh 'npm test'
+                        // Run backend tests
+                        sh 'npm test'
                     }
                 }
             }
@@ -33,8 +35,8 @@ pipeline {
                         sh 'npm install'
                         // Build frontend
                         sh 'npm run build'
-                        // Optional: Run frontend tests
-                        // sh 'npm test'
+                        // Run frontend tests
+                        sh 'npm test'
                     }
                 }
             }
@@ -44,12 +46,12 @@ pipeline {
             steps {
                 script {
                     // Build Docker images
-                    sh 'docker build -t your-backend-image:latest backend/'
-                    sh 'docker build -t your-frontend-image:latest frontend/'
+                    sh 'docker build -t nuclearcoder26/chatapp-backend:latest backend/'
+                    sh 'docker build -t nuclearcoder26/chatapp-frontend:latest frontend/'
                     // Push images to Docker registry (replace with your registry)
-                    // sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
-                    // sh 'docker push your-backend-image:latest'
-                    // sh 'docker push your-frontend-image:latest'
+                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+                    sh 'docker nuclearcoder26/chatapp-backend:latest'
+                    sh 'docker nuclearcoder26/chatapp-frontend:latest'
                 }
             }
         }
@@ -57,9 +59,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Add your deployment steps here
-                    // For example, use docker-compose, kubectl, or ssh to remote server
-                    // sh 'docker-compose up -d'
+                    // Deploy using docker-compose
+                    sh 'docker-compose up -d'
                 }
             }
         }
