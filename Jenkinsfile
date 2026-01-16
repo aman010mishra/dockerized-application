@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NODE_ENV=development
+        NODE_ENV='development'
         DOCKER_USER = 'nuclearcoder26'
         DOCKER_PASS = 'dF6!aJ6@@'
     }
