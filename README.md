@@ -1,2 +1,3 @@
 # dockerized-application
-applied devops tools and techniques
+# created images and containerized using docker 
+# ci-cd using jenkins 
